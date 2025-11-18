@@ -1,0 +1,1 @@
+uv run pyinstaller --onefile --windowed --name "AdobeTool" main.py

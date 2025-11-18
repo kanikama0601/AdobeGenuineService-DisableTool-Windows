@@ -661,7 +661,6 @@ class BonjourServiceStopperApp:
                 self.log_message("完了！")
                 self.log_message("=" * 60)
                 messagebox.showinfo("完了", "設定を適用しました！")
-                window.destroy()
                 # 状態を再確認
                 self.root.after(500, self.check_service)
             else:
