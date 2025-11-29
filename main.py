@@ -4,15 +4,15 @@ import subprocess
 import ctypes
 import sys
 
-class BonjourServiceStopperApp:
+class AdobeGenuineServiceStopperApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Bonjour Service 停止ツール")
+        self.root.title("Adobe Genuine 停止ツール")
         self.root.geometry("650x700")
         self.root.configure(bg="#f5f5f5")
         self.root.resizable(False, False)
         
-        self.service_name = "Bonjour Service"
+        self.service_name = "Adobe Genuine Software Integrity Service"
         
         # 管理者権限チェック
         # -------------------------------------------------------
@@ -27,7 +27,7 @@ class BonjourServiceStopperApp:
         
         title_label = tk.Label(
             header_frame,
-            text="Bonjour Service 停止ツール",
+            text="Adobe Genuine 停止ツール",
             font=("Yu Gothic UI", 20, "bold"),
             bg="#ffffff",
             fg="#333333"
@@ -144,6 +144,7 @@ class BonjourServiceStopperApp:
         # -------------------------------------------------------
         self.root.after(500, self.check_service)
     
+    
     # 管理者権限チェック機能
     # -------------------------------------------------------
     def is_admin(self):
@@ -181,10 +182,10 @@ class BonjourServiceStopperApp:
     # サービス確認機能
     # -------------------------------------------------------
     def check_service(self):
-        """Bonjour Serviceの存在と状態を確認"""
+        """Adobe Genuineの存在と状態を確認"""
         self.clear_log()
         self.log_message("=" * 60)
-        self.log_message("Bonjour Service 確認中...")
+        self.log_message("Adobe Genuine 確認中...")
         self.log_message("=" * 60)
         
         try:
@@ -198,11 +199,18 @@ class BonjourServiceStopperApp:
             )
             
             if result.returncode != 0:
-                self.status_label.config(text="● サービスが見つかりません", fg="#999999")
-                self.log_message(f"\n{self.service_name} が見つかりませんでした")
-                messagebox.showinfo("確認結果", f"{self.service_name} が見つかりませんでした")
+                self.status_label.config(text="● サービスが見つかりません", fg="#FF5722")
+                self.log_message("\n" + "!" * 60)
+                self.log_message("❌ エラー: サービスが見つかりません")
+                self.log_message("!" * 60)
+                self.log_message(f"\n{self.service_name} は、このコンピュータに")
+                self.log_message("インストールされていないか、削除されています。")
+                messagebox.showerror(
+                    "サービスが見つかりません", 
+                    f"{self.service_name} が見つかりませんでした。\n\n"
+                    "このサービスはインストールされていない可能性があります。"
+                )
                 return False
-            
             # サービスの状態を解析
             output = result.stdout
             
@@ -251,7 +259,7 @@ class BonjourServiceStopperApp:
         """サービスを停止し、自動実行を無効化"""
         self.clear_log()
         self.log_message("=" * 60)
-        self.log_message("Bonjour Service 停止処理開始")
+        self.log_message("Adobe Genuine 停止処理開始")
         self.log_message("=" * 60)
         
         # まずサービスの存在確認
@@ -671,11 +679,12 @@ class BonjourServiceStopperApp:
             self.log_message(f"\nエラー: {str(e)}")
             messagebox.showerror("エラー", f"設定の変更に失敗しました:\n{str(e)}")
 
+
 # メイン実行
 # -------------------------------------------------------
 def main():
     root = tk.Tk()
-    app = BonjourServiceStopperApp(root)
+    app = AdobeGenuineServiceStopperApp(root)
     root.mainloop()
 
 if __name__ == "__main__":

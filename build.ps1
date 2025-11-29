@@ -1,1 +1,1 @@
-uv run pyinstaller --onefile --windowed --name "AdobeTool" main.py
+uv run pyinstaller --onefile --noconsole --windowed --name "AdobeGenuineService-DisableTool-v1.0" --icon="favicon.ico" main.py
