@@ -19,7 +19,7 @@ def build():
         print("successfully built the application.")
         print(result.stdout)
     except subprocess.CalledProcessError as e:
-        print("ビルド失敗:", file=sys.stderr)
+        print("build failed:", file=sys.stderr)
         print(e.stderr, file=sys.stderr)
         sys.exit(1)
 
